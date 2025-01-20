@@ -6,10 +6,12 @@ public class FixedSizeStack<T> {
 	private int size;
 	
 	/* CONSTRUCTORS */
-	
 	FixedSizeStack() {}
-	FixedSizeStack(int size) { 
+	
+	@SuppressWarnings("unchecked")
+	FixedSizeStack(int size) {
 		this.size = size;
+		this.stack = (T[]) new Object[size];
 	}
 	
 	/* SETTERS */
@@ -32,9 +34,9 @@ public class FixedSizeStack<T> {
 		if (isEmpty()) 
 			stack[0] = new_element;
 		else {
-			int i = 0;
+			int i = 1;
 			while (stack[i] != null) i++;
-			stack[i] = new_element;					
+			stack[i] = new_element;			
 		}
 	}
 	
@@ -66,7 +68,14 @@ public class FixedSizeStack<T> {
 		return i++;		
 	}
 	
-	
+	@Override
+	public String toString() {
+		String stack_str = "";
+		for(int i = size-1; i >= 0; i--)
+			if (stack[i] != null) stack_str += stack[i] + " -> ";
+		
+		return stack_str;
+	}
 	
 	
 }
