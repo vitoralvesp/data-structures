@@ -8,6 +8,7 @@ public class Main {
 		
 		Scanner scanner = new Scanner(System.in);		
 		int datatype_selection;
+		int stack_size;
 		int menu_option;
 		StaticStack<String> string_stack = null;
 		StaticStack<Integer> integer_stack = null;
@@ -42,13 +43,34 @@ public class Main {
 			
 		}
 		
+		while (true) {
+			
+			try {
+				
+				System.out.print("Now, enter the stack size limit: ");
+				stack_size = scanner.nextInt();
+				break;
+				
+			}
+			catch(InputMismatchException e) {
+				
+				System.out.println("---\n[ INPUT MISMATCH EXCEPTION ] Type only positive integer numbers to set the stack size limit.");
+				
+				scanner.nextLine();
+				
+			}
+			
+		}
+		
 		
 		switch(datatype_selection) {
-		case 1 -> string_stack = new StaticStack<>(5);
-		case 2 -> integer_stack = new StaticStack<>(5);
-		case 3 -> boolean_stack = new StaticStack<>(5);
-		case 4 -> float_stack = new StaticStack<>(5);	
+		case 1 -> string_stack = new StaticStack<>(stack_size);
+		case 2 -> integer_stack = new StaticStack<>(stack_size);
+		case 3 -> boolean_stack = new StaticStack<>(stack_size);
+		case 4 -> float_stack = new StaticStack<>(stack_size);	
 		}
+		
+		System.out.println("[ STACK CREATED ] Stack was created succesfully!!");
 		
 		/* STACK SIMULATION */
 				
@@ -88,6 +110,7 @@ public class Main {
 				break;
 			}
 			
+			scanner.nextLine();
 			
 			switch(menu_option) {
 			
@@ -126,6 +149,7 @@ public class Main {
 						} else {
 							
 							System.out.println("---\n[ STACK IS FULL ] Stack is already full!");
+							break;
 							
 						}
 						
@@ -155,7 +179,7 @@ public class Main {
 					case 3 -> boolean_stack.pop();
 					case 4 -> float_stack.pop();
 					}
-					System.out.println("Element on to removed succesfully!");
+					System.out.println("Element removed succesfully!");
 					
 				} else {
 				
@@ -177,19 +201,25 @@ public class Main {
 				break;
 			
 			case 4:
-				System.out.println("---\nSHOWING STACK"); 
+				System.out.println("---\nSHOWING STACK");
 				
-				switch(datatype_selection) {
+				if (string_stack != null && !string_stack.isEmpty() || integer_stack != null && !integer_stack.isEmpty() || boolean_stack != null && !boolean_stack.isEmpty() || float_stack != null && !float_stack.isEmpty()) {
+					
+					switch(datatype_selection) {
+					
+					case 1 -> System.out.println("Top: " + string_stack.top() + "\nStack: " + string_stack.toString());
+					
+					case 2 -> System.out.println("Top: " + integer_stack.top() + "\nStack: " + integer_stack.toString());
+					
+					case 3 -> System.out.println("Top: " + boolean_stack.top() + "\nStack: " + boolean_stack.toString());
+					
+					case 4 -> System.out.println("Top: " + float_stack.top() + "\nStack: " + float_stack.toString());
 				
-				case 1 -> System.out.println("Top: " + string_stack.top() + "\nStack: " + string_stack.toString());
-			
-				case 2 -> System.out.println("Top: " + integer_stack.top() + "\nStack: " + integer_stack.toString());
-				
-				case 3 -> System.out.println("Top: " + boolean_stack.top() + "\nStack: " + boolean_stack.toString());
-				
-				case 4 -> System.out.println("Top: " + float_stack.top() + "\nStack: " + float_stack.toString());
-				
-				default -> System.out.println("null");
+					}
+				} else {
+					
+					System.out.println("Stack is empty.");
+					
 				}
 				
 				break;
