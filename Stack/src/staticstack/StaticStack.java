@@ -1,15 +1,15 @@
-package fixedSizeStack;
+package staticstack;
 
-public class FixedSizeStack<T> {
+public class StaticStack<T> {
 	
 	private T[] stack;
 	private int size;
 	
 	/* CONSTRUCTORS */
-	FixedSizeStack() {}
+	StaticStack() {}
 	
 	@SuppressWarnings("unchecked")
-	FixedSizeStack(int size) {
+	StaticStack(int size) {
 		this.size = size;
 		this.stack = (T[]) new Object[size];
 	}
@@ -43,6 +43,8 @@ public class FixedSizeStack<T> {
 	public void pop() {
 		if (isFull()) 
 			stack[size-1] = null;
+		else if (isEmpty())
+			return;
 		else {
 			int i = size-1;
 			while (stack[i] == null) i--;
@@ -71,9 +73,9 @@ public class FixedSizeStack<T> {
 	@Override
 	public String toString() {
 		String stack_str = "";
-		for(int i = size-1; i >= 0; i--)
+		for(int i = size-1; i > 0; i--)
 			if (stack[i] != null) stack_str += stack[i] + " -> ";
-		
+		stack_str += stack[0];
 		return stack_str;
 	}
 	
