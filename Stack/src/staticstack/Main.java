@@ -21,7 +21,7 @@ public class Main {
 			
 			try {
 				
-				System.out.print("---\nFIXED SIZE STACK SIMULATOR\n[ DATATYPE SELECTION ] Before moving forward, select one of the datatypes\nbelow to create a stack:\n[ 1 ] String\n[ 2 ] Integer\n[ 3 ] Boolean\n[ 4 ] Float\nSelect one of the options: ");
+				System.out.print("---\nSTATIC STACK SIMULATOR\n[ DATATYPE SELECTION ] Before moving forward, select one of the datatypes\nbelow to create a stack:\n[ 1 ] String\n[ 2 ] Integer\n[ 3 ] Boolean\n[ 4 ] Float\nSelect one of the options: ");
 				datatype_selection = scanner.nextInt();
 				
 				while (datatype_selection < 1 || datatype_selection > 4) {
