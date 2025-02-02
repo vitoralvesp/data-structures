@@ -1,4 +1,4 @@
-package BinaryTree;
+package binarytree;
 
 public class BinaryTree<T> {
 	
@@ -10,6 +10,10 @@ public class BinaryTree<T> {
 	
 	BinaryTree(Node<T> root) { this.root = root; }
 	
+	/* GETTER */
+	
+	public Node<T> getRoot() { return root; }
+	
 	
 	/* METHODS */
 	
@@ -17,21 +21,20 @@ public class BinaryTree<T> {
 	
 	public boolean isFull() { return false; }
 	
-	private Node<T> insert_node(Node<T> node) {
+	private void insertNode(Node<T> current, Node<T> node) {
 		
-		if (isEmpty()) root = node;
-		else if (node.getLeft() == null) node.setLeft(node);
-		else if (node.getRight() ==  null) node.setRight(node);
-		else insert_node(node);
-		
-		return node;
+		if (current.getLeft() == null) current.setLeft(node);
+		else if (current.getRight() == null) current.setRight(node);
+		else insertNode(current.getLeft(), node);
 		
 	}
 	
 	public void insert(T data) {
 		
-		Node<T> new_node = new Node<>(data);
-		insert_node(new_node);
+		Node<T> node = new Node<>(data);
+		
+		if (isEmpty()) root = node;
+		else insertNode(root, node);
 		
 	}
 	
@@ -39,7 +42,7 @@ public class BinaryTree<T> {
 		
 		if (node == null) return;
 		
-		System.out.println(node.getData() + " ");
+		System.out.print(node.getData() + " ");
 		preOrderTraversal(node.getLeft());
 		preOrderTraversal(node.getRight());
 		
@@ -50,7 +53,7 @@ public class BinaryTree<T> {
 		if (node == null) return;
 		
 		inOrderTraversal(node.getLeft());
-		System.out.println(node.getData() + " ");
+		System.out.print(node.getData() + " ");
 		inOrderTraversal(node.getRight());
 		
 	}
@@ -61,9 +64,15 @@ public class BinaryTree<T> {
 		
 		postOrderTraversal(node.getLeft());
 		postOrderTraversal(node.getRight());
-		System.out.println(node.getData() + " ");
+		System.out.print(node.getData() + " ");
 		
 	}
+	
+	public void preOrderTraversal() { preOrderTraversal(root); }
+	
+	public void inOrderTraversal() { inOrderTraversal(root); }
+	
+	public void postOrderTraversal() { postOrderTraversal(root); }
 	
 	
 	
