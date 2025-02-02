@@ -6,7 +6,7 @@
 🟨 Stack <br>
 🟨 Queue <br>
 🟥 Linked-List <br>
-🟥 Binary Tree <br>
+🟨 Binary Tree <br>
 🟥 Binary Search Tree <br>
 🟥 Heap <br>
 🟥 AVL Tree <br>
