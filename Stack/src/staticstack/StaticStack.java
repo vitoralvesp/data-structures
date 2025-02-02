@@ -2,8 +2,8 @@ package staticstack;
 
 public class StaticStack<T> {
 	
-	private T[] stack;
-	private int size;
+	private T[] stack; // raw-type stack
+	private int size; // stack size limit
 	
 	/* CONSTRUCTORS */
 	StaticStack() {}
@@ -14,21 +14,20 @@ public class StaticStack<T> {
 		this.stack = (T[]) new Object[size];
 	}
 	
-	/* SETTERS */
+	/* SETTER */
 	public void setSize(int size) { this.size = size; }
 	
-	/* GETTERS */
+	/* GETTER */
 	public int getSize() { return size; }
 	
-	/* METHODS */
-	public boolean isEmpty() {
-		return stack[0] == null;		
-		
-	}
+	/* OTHER METHODS */
 	
-	public boolean isFull() {
-		return stack[size-1] != null;
-	}
+	/*
+	 * @return 
+	 */
+	public boolean isEmpty() { return stack[0] == null;	}
+	
+	public boolean isFull() { return stack[size-1] != null; }
 	
 	public void push(T new_element) {
 		if (isEmpty()) 
