@@ -153,6 +153,8 @@ public class Main {
 					System.out.print("\nPost-Order Traversal: ");
 					binary_tree_string.postOrderTraversal();
 					
+					System.out.print("\nLevel-Order Traversal: ");
+					
 					break;
 				
 				case 2:
@@ -166,6 +168,8 @@ public class Main {
 					System.out.print("\nPost-Order Traversal: ");
 					binary_tree_integer.postOrderTraversal();
 					
+					System.out.print("\nLevel-Order Traversal: ");
+					
 					break;
 					
 				case 3:
@@ -178,6 +182,8 @@ public class Main {
 					
 					System.out.print("\nPost-Order Traversal: ");
 					binary_tree_float.postOrderTraversal();
+					
+					System.out.print("\nLevel-Order Traversal: ");
 					
 					break;
 					

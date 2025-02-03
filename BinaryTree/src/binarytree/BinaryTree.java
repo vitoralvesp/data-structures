@@ -1,4 +1,6 @@
 package binarytree;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BinaryTree<T> {
 	
@@ -10,10 +12,22 @@ public class BinaryTree<T> {
 	
 	BinaryTree(Node<T> root) { this.root = root; }
 	
-	/* GETTER */
+	/* GETTERS */
 	
 	public Node<T> getRoot() { return root; }
 	
+	private int getHeight(Node<T> node) {
+		
+		if (root == null) return -1;
+		
+		int left_tree_height = getHeight(node.getLeft());
+		int right_tree_height = getHeight(node.getRight());
+		
+		return Math.max(left_tree_height, right_tree_height) + 1;
+		
+	}
+	
+	public int getHeight() { return getHeight(root); }
 	
 	/* METHODS */
 	
@@ -38,7 +52,7 @@ public class BinaryTree<T> {
 		
 	}
 	
-	public void preOrderTraversal(Node<T> node) {
+	private void preOrderTraversal(Node<T> node) {
 		
 		if (node == null) return;
 		
@@ -48,7 +62,7 @@ public class BinaryTree<T> {
 		
 	}
 	
-	public void inOrderTraversal(Node<T> node) {
+	private void inOrderTraversal(Node<T> node) {
 		
 		if (node == null) return;
 		
@@ -58,7 +72,7 @@ public class BinaryTree<T> {
 		
 	}
 	
-	public void postOrderTraversal(Node<T> node) {
+	private void postOrderTraversal(Node<T> node) {
 		
 		if (node == null) return;
 		
@@ -74,6 +88,6 @@ public class BinaryTree<T> {
 	
 	public void postOrderTraversal() { postOrderTraversal(root); }
 	
-	
+	// search method will use level order traversal
 	
 }
