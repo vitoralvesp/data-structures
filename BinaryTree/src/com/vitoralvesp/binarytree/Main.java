@@ -60,10 +60,10 @@ public class Main {
 				
 				try {
 					
-					System.out.print("---\nMENU\n[ 1 ] Insert\n[ 2 ] Show Binary Tree\n[ 3 ] Exit\n\nChoose an option: ");
+					System.out.print("---\nMENU\n[ 1 ] Insert\n[ 2 ] Show Binary Tree\n[ 3 ] Tree Height\n[ 4 ] Exit\n\nChoose an option: ");
 					menu_option = scanner.nextInt();
 					
-					while (menu_option <= 0 || menu_option > 3) {
+					while (menu_option <= 0 || menu_option > 4) {
 						
 						System.out.print("---\n[ INVALID MENU OPTION ] To select one of the menu options shown,\ntype only positive integer number from 1 to 3. Try again: ");
 						menu_option = scanner.nextInt();
@@ -84,7 +84,7 @@ public class Main {
 				
 			}
 			
-			if (menu_option == 3) {
+			if (menu_option == 4) {
 				System.out.println("---\nEXITING\nClosing scanner...\n---");
 				scanner.close();
 				break;
@@ -154,6 +154,7 @@ public class Main {
 					binary_tree_string.postOrderTraversal();
 					
 					System.out.print("\nLevel-Order Traversal: ");
+					binary_tree_string.levelOrderTraversal();
 					
 					break;
 				
@@ -169,28 +170,27 @@ public class Main {
 					binary_tree_integer.postOrderTraversal();
 					
 					System.out.print("\nLevel-Order Traversal: ");
+					binary_tree_integer.levelOrderTraversal();
 					
 					break;
-					
+								
+			
 				case 3:
-					
-					System.out.print("Pre-Order Traversal: ");
-					binary_tree_float.preOrderTraversal();
-					
-					System.out.print("\nIn-Order Traversal: ");
-					binary_tree_float.inOrderTraversal();
-					
-					System.out.print("\nPost-Order Traversal: ");
-					binary_tree_float.postOrderTraversal();
-					
-					System.out.print("\nLevel-Order Traversal: ");
-					
+				
+					System.out.print("---\nBINARY TREE HEIGHT: " + 
+							switch(datatype_selection) {
+							case 1 -> binary_tree_string.getHeight();
+							case 2 -> binary_tree_integer.getHeight();
+							case 3 -> binary_tree_float.getHeight();
+							default -> "undefined";
+							});
+				
 					break;
 					
 				}
 				
 				System.out.print("\n");
-				
+
 			}
 			
 		}

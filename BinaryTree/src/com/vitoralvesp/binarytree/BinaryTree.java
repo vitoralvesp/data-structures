@@ -1,5 +1,9 @@
 package com.vitoralvesp.binarytree;
-
+import java.util.Queue;
+import java.util.Collections;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class BinaryTree<T> {
 	
@@ -7,7 +11,7 @@ public class BinaryTree<T> {
 	
 	/* CONSTRUCTORS */
 	
-	BinaryTree() {}
+	BinaryTree() { this.root = null; }
 	
 	BinaryTree(Node<T> root) { this.root = root; }
 	
@@ -17,7 +21,7 @@ public class BinaryTree<T> {
 	
 	private int getHeight(Node<T> node) {
 		
-		if (root == null) return -1;
+		if (node == null) return -1;
 		
 		int left_tree_height = getHeight(node.getLeft());
 		int right_tree_height = getHeight(node.getRight());
@@ -81,10 +85,37 @@ public class BinaryTree<T> {
 		
 	}
 	
-	private void levelOrderTraversal() {
+	private void levelOrderTraversal(Node<T> root) {
 		
+		if (isEmpty()) return;
 		
+		Queue<List<Node<T>>> queue = new LinkedList<>();
+		queue.add(Collections.singletonList(root));
 		
+		while (!queue.isEmpty()) {
+			
+			List<Node<T>> current_level = queue.remove();
+			List<Node<T>> next_level = new ArrayList<>();
+			
+			System.out.print("[");
+			
+			for (int i = 0; i < current_level.size(); i++) {
+				
+				Node<T> node = current_level.get(i);
+				System.out.print(node.getData());
+				
+				if (i < current_level.size() - 1) System.out.print(",");
+				
+				if (node.getLeft() != null) next_level.add(node.getLeft());
+				if (node.getRight() != null) next_level.add(node.getRight());
+				
+			}
+			
+			System.out.print("]");
+			
+			if (!next_level.isEmpty()) queue.add(next_level);
+			
+		}
 		
 	}
 	
@@ -93,6 +124,8 @@ public class BinaryTree<T> {
 	public void inOrderTraversal() { inOrderTraversal(root); }
 	
 	public void postOrderTraversal() { postOrderTraversal(root); }
+	
+	public void levelOrderTraversal() { levelOrderTraversal(root); }
 	
 	// search method will use level order traversal
 	
