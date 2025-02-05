@@ -1,4 +1,4 @@
-package staticstack;
+package com.vitoralvesp.staticstack;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 

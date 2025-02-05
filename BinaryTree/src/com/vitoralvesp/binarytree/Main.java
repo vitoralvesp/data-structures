@@ -1,4 +1,4 @@
-package binarytree;
+package com.vitoralvesp.binarytree;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

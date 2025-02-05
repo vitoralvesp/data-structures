@@ -1,4 +1,4 @@
-package dinamicstack;
+package com.vitoralvesp.dinamicstack;
 
 public class DinamicStack<T> {
 	

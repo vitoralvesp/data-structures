@@ -1,6 +1,5 @@
-package binarytree;
-import java.util.LinkedList;
-import java.util.Queue;
+package com.vitoralvesp.binarytree;
+
 
 public class BinaryTree<T> {
 	
@@ -47,7 +46,7 @@ public class BinaryTree<T> {
 		
 		Node<T> node = new Node<>(data);
 		
-		if (isEmpty()) root = node;
+		if (isEmpty()) this.root = node;
 		else insertNode(root, node);
 		
 	}
@@ -79,6 +78,13 @@ public class BinaryTree<T> {
 		postOrderTraversal(node.getLeft());
 		postOrderTraversal(node.getRight());
 		System.out.print(node.getData() + " ");
+		
+	}
+	
+	private void levelOrderTraversal() {
+		
+		
+		
 		
 	}
 	

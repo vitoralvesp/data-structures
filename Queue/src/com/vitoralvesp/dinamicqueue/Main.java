@@ -1,4 +1,4 @@
-package dinamicqueue;
+package com.vitoralvesp.dinamicqueue;
 
 public class Main {
 

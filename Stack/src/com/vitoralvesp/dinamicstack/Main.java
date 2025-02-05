@@ -1,4 +1,4 @@
-package dinamicstack;
+package com.vitoralvesp.dinamicstack;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 

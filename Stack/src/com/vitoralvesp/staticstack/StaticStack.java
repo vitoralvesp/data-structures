@@ -1,4 +1,4 @@
-package staticstack;
+package com.vitoralvesp.staticstack;
 
 public class StaticStack<T> {
 	

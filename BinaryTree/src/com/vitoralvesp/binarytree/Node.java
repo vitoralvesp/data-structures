@@ -1,4 +1,4 @@
-package binarytree;
+package com.vitoralvesp.binarytree;
 
 public class Node<T> {
 	

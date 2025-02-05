@@ -1,4 +1,4 @@
-package staticqueue;
+package com.vitoralvesp.staticqueue;
 
 public class StaticQueue<T> {
 
