@@ -3,198 +3,128 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+	
+	private enum Menu {
+		
+		CREATE(1), INSERT(2), REMOVE(3), TRAVERSE(4), GET_PROPERTIES(5), EXIT(6);
+		final int menu_option_selected;
+		
+		Menu(int menu_option_chosen) { this.menu_option_selected = menu_option_chosen;	}
+		
+	}
+	
+	private enum Datatype {
+		
+		STRING(1), INTEGER(2);
+		final int datatype_option_selected;
+		
+		Datatype(int datatype_option_chosen) { this.datatype_option_selected = datatype_option_chosen; }
+		
+	}
 
 	public static void main(String[] args) {
+
+		BinaryTree<Integer> binary_tree_int_type = null;
+		BinaryTree<String> binary_tree_str_type = null;
 		
-		BinaryTree<String> binary_tree_string = null;
-		BinaryTree<Integer> binary_tree_integer = null;
-		BinaryTree<Float> binary_tree_float = null;
 		Scanner scanner = new Scanner(System.in);
 		
-		int datatype_selection;
-		int menu_option;
+		int menu_option = -1;
+		int datatype_option = -1;
 		
-		
-		/* BINARY TREE DATATYPE SELECTION */
-		
-		while (true) {
+		while (menu_option != 6) {
+
+			System.out.print("---\nBINARY TREE SIMULATOR\nSelect one of the options below to interact with the binary tree.\n[ 1 ] CREATE\n[ 2 ] INSERT\n[ 3 ] REMOVE\n[ 4 ] TRAVERSE\n[ 5 ] GET PROPERTIES\n[ 6 ] EXIT\nChoose on of the options: ");
 			
 			try {
-			
-				System.out.print("---\nBINARY TREE SIMULATOR\n[ DATATYPE SELECTION ] Before moving forward, select one of the datatypes\nbelow to create a binary tree:\n[ 1 ] String\n[ 2 ] Integer\n[ 3 ] Float\nSelect one of the options: ");
-				datatype_selection = scanner.nextInt();
 				
-				while (datatype_selection < 1 || datatype_selection > 3) {
-					System.out.print("---\n[ INVALID DATATYPE ] Select only one of the options above, from 1 to 3. Try again: ");
-					datatype_selection = scanner.nextInt();
-				}
-				scanner.nextLine();
+				menu_option = scanner.nextInt();
 				
-				break;
+				switch (Menu.values()[menu_option - 1]) {
 				
-			}
-			catch(InputMismatchException e) {
-				
-				System.out.println("---\n[ INPUT MISMATCH EXCEPTION ] Type only positive integer numbers from 1 to 3\nto select one of the options shown.");
-				
-				scanner.nextLine();
-				
-			}
-			
-		}
-		
-		switch(datatype_selection) {
-		case 1 -> binary_tree_string = new BinaryTree<>();
-		case 2 -> binary_tree_integer = new BinaryTree<>();
-		case 3 -> binary_tree_float = new BinaryTree<>();
-		}
-		
-		System.out.println("[ BINARY TREE CREATED ] Binary Tree was created succesfully!!");
-		
-		
-		/* BINARY TREE SIMULATION */
-		
-		while (true) {
-			
-			while (true) {
-				
-				try {
+				case CREATE:
 					
-					System.out.print("---\nMENU\n[ 1 ] Insert\n[ 2 ] Show Binary Tree\n[ 3 ] Tree Height\n[ 4 ] Exit\n\nChoose an option: ");
-					menu_option = scanner.nextInt();
-					
-					while (menu_option <= 0 || menu_option > 4) {
-						
-						System.out.print("---\n[ INVALID MENU OPTION ] To select one of the menu options shown,\ntype only positive integer number from 1 to 3. Try again: ");
-						menu_option = scanner.nextInt();
-						scanner.nextLine();
-						
-					}
-					
-					break;
-					
-				}
-				catch(InputMismatchException e) {
-					
-					System.out.println("---\n[ INPUT MISMATCH EXCEPTION ] Type only positive integer numbers from 1 to 3\nto select one of the options shown.");
-					
-					scanner.nextLine();
-					
-				}
-				
-			}
-			
-			if (menu_option == 4) {
-				System.out.println("---\nEXITING\nClosing scanner...\n---");
-				scanner.close();
-				break;
-			}
-			
-			scanner.nextLine();
-			
-			switch (menu_option) {
-			
-			case 1:
-				
-				while(true) {
+					System.out.print("---\nCREATING BINARY TREE\nSelect one of the datatypes below to create a binary tree.\n[ 1 ] STRING\n[ 2 ] INTEGER\nEnter the datatype selected here: ");
 					
 					try {
 						
-						if (binary_tree_string != null || binary_tree_integer != null || binary_tree_float != null) {
-							
-							System.out.print("---\nINSERTING NEW ELEMENT\nEnter the value to be inserted: ");
-							
-							switch(datatype_selection) {
-							case 1:
-								String new_string_element = scanner.nextLine();
-								binary_tree_string.insert(new_string_element);
+						datatype_option = scanner.nextInt();
+						
+						switch (Datatype.values()[datatype_option - 1]) {
+						
+							case STRING:
+								binary_tree_str_type = new BinaryTree<>();
 								break;
-							case 2:
-								Integer new_integer_element = scanner.nextInt();
-								binary_tree_integer.insert(new_integer_element);
+								
+							case INTEGER:
+								binary_tree_int_type = new BinaryTree<>();
 								break;
-							case 3:
-								Float new_float_element = scanner.nextFloat();
-								binary_tree_float.insert(new_float_element);
-								break;
-							}
-							
-							System.out.println("New element inserted succesfully!");
-							break;
-							
+								
 						}
 						
-					}
-					catch(InputMismatchException e) {
+					} catch (ArrayIndexOutOfBoundsException e) {
 						
-						System.out.println("---\n[ WRONG DATATYPE INPUT ] It is not possible to insert this element into\nthe binary tree due to the tree datatype selected previously. Please, check the\ndatatype both from; tree and element to push and try again...");
-						
-						scanner.nextLine();
+						System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
 						
 					}
 					
-				}
-				
-				break;
-				
-			case 2:
-				
-				System.out.print("---\nBINARY TREE TRAVERSALS\n");
-				
-				switch	(datatype_selection) {
-				case 1:
-					
-					System.out.print("Pre-Order Traversal: ");
-					binary_tree_string.preOrderTraversal();
-					
-					System.out.print("\nIn-Order Traversal: ");
-					binary_tree_string.inOrderTraversal();
-					
-					System.out.print("\nPost-Order Traversal: ");
-					binary_tree_string.postOrderTraversal();
-					
-					System.out.print("\nLevel-Order Traversal: ");
-					binary_tree_string.levelOrderTraversal();
-					
 					break;
-				
-				case 2:
 					
-					System.out.print("Pre-Order Traversal: ");
-					binary_tree_integer.preOrderTraversal();
 					
-					System.out.print("\nIn-Order Traversal: ");
-					binary_tree_integer.inOrderTraversal();
-					
-					System.out.print("\nPost-Order Traversal: ");
-					binary_tree_integer.postOrderTraversal();
-					
-					System.out.print("\nLevel-Order Traversal: ");
-					binary_tree_integer.levelOrderTraversal();
-					
+				case INSERT:
+					System.out.println("INSERT");
 					break;
-								
-			
-				case 3:
-				
-					System.out.print("---\nBINARY TREE HEIGHT: " + 
-							switch(datatype_selection) {
-							case 1 -> binary_tree_string.getHeight();
-							case 2 -> binary_tree_integer.getHeight();
-							case 3 -> binary_tree_float.getHeight();
-							default -> "undefined";
-							});
-				
+					
+				case REMOVE:
+					System.out.println("REMOVE");
 					break;
+					
+				case TRAVERSE:
+					System.out.println("TRAVERSE");
+					break;
+					
+				case GET_PROPERTIES:
+					
+					System.out.println("---\nGETTING PROPERTIES");
+					
+					switch (Datatype.values()[datatype_option - 1]) {
+					
+						case STRING:
+							System.out.println("Root: " + binary_tree_str_type.getRoot());
+							System.out.println("Height: " + binary_tree_str_type.getHeight());
+							System.out.println("Empty: " + (binary_tree_str_type.isEmpty() ? "Yes" : "No"));
+							System.out.println("Full: " + (binary_tree_str_type.isFull() ? "Yes" : "No"));
+							
+							break;
+							
+						
+						case INTEGER:
+							System.out.println("Root: " + binary_tree_int_type.getRoot());
+							System.out.println("Height: " + binary_tree_int_type.getHeight());
+							System.out.println("Empty: " + (binary_tree_int_type.isEmpty() ? "Yes" : "No"));
+							System.out.println("Full: " + (binary_tree_int_type.isFull() ? "Yes" : "No"));
+							
+							break;
+							
+					}
+					
+					break;			
 					
 				}
 				
-				System.out.print("\n");
-
+			} catch (ArrayIndexOutOfBoundsException e) {
+				
+				System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
+				
 			}
 			
 		}
-
+		
+		System.out.println("---\nEXITING\nClosing Scanner...\nDestroying Binary Trees...");
+		scanner.close();
+		binary_tree_str_type = null;
+		binary_tree_int_type = null;
+			
 	}
 
 }
