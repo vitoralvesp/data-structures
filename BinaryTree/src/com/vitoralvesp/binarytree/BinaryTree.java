@@ -12,9 +12,6 @@ public class BinaryTree<T> {
 	BinaryTree(T data) { this.root = new Node<>(data); }
 	
 	
-	/* SETTERS */
-	
-	
 	/* GETTERS */
 	
 	public T getRoot() { return root.getData(); }
@@ -35,16 +32,68 @@ public class BinaryTree<T> {
 	
 	public int getHeight() { return getHeight(root); }
 	
+	
 	/* METHODS */
 	
 	public boolean isEmpty() { return root == null; }
 	
-	public boolean isFull() { return false; }
+	public boolean isFull() { return false; } 
 	
+	private Node<T> insert(Node<T> root, T data) {
+		
+		if (root == null) {
+			root = new Node<>(data);
+			return root;
+		}
+		
+		if (root.getLeft() == null) root.setLeft(insert(root.getLeft(), data));
+		else root.setRight(insert(root.getRight(), data));
+		
+		return root;
+		
+	}
 	
+	public void insert(T data) { insert(root, data); }
 	
+	private void preOrderTraversal(Node<T> root) {
+		
+		if (isEmpty()) return;
+		
+		System.out.print(root.getData() + " ");
+		preOrderTraversal(root.getLeft());
+		preOrderTraversal(root.getRight());
+		
+	}
 	
+	private void inOrderTraversal(Node<T> root) {
+		
+		if (isEmpty()) return;
+		
+		inOrderTraversal(root.getLeft());
+		System.out.print(root.getData() + " ");
+		inOrderTraversal(root.getRight());
+		
+	}
 	
+	private void postOrderTraversal(Node<T> root) {
+		
+		if (isEmpty()) return;
+		
+		postOrderTraversal(root.getLeft());
+		postOrderTraversal(root.getRight());
+		System.out.print(root.getData() + " ");
+		
+	}
+	
+	private void levelOrderTraversal(Node<T> root) {}
+	
+	public void preOrderTraversal() { preOrderTraversal(root); }
+	
+	public void inOrderTraversal() { inOrderTraversal(root); }
+	
+	public void postOrderTraversal() { postOrderTraversal(root); }
+	
+	public void levelOrderTraversal() { levelOrderTraversal(root); }
 	
 	
 }

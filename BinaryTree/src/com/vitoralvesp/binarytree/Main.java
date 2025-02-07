@@ -62,6 +62,8 @@ public class Main {
 								
 						}
 						
+						System.out.println("[ SUCCESS ] New binary tree created succesfully.");
+						
 					} catch (ArrayIndexOutOfBoundsException e) {
 						
 						System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
@@ -72,7 +74,23 @@ public class Main {
 					
 					
 				case INSERT:
-					System.out.println("INSERT");
+					
+					System.out.print("---\nINSERTING NEW ELEMENT\nEnter a element: ");
+					
+					switch (Datatype.values()[datatype_option - 1]) {
+					
+						case STRING:
+							String new_str_element = scanner.nextLine();
+							binary_tree_str_type.insert(new_str_element);
+							break;
+						
+						case INTEGER:
+							Integer new_int_element = scanner.nextInt();
+							binary_tree_int_type.insert(new_int_element);
+							break;					
+					}
+					
+					System.out.println("[ SUCCESS ] New element inserted succesfully.");					
 					break;
 					
 				case REMOVE:
@@ -80,8 +98,49 @@ public class Main {
 					break;
 					
 				case TRAVERSE:
-					System.out.println("TRAVERSE");
+					
+					System.out.println("---\nBINARY TREE TRAVERSALS");
+					
+					switch (Datatype.values()[datatype_option - 1]) {
+					
+						case STRING:
+							
+							System.out.print("Pre-Order Traversal: ");
+							binary_tree_str_type.preOrderTraversal();
+							
+							System.out.print("\nIn-Order Traversal: ");
+							binary_tree_str_type.inOrderTraversal();
+							
+							System.out.print("\nPost-Order Traversal: ");
+							binary_tree_str_type.postOrderTraversal();
+							
+							System.out.print("\nLevel-Order Traversal: ");
+							binary_tree_str_type.levelOrderTraversal();
+							
+							System.out.printf("%n");
+							break;
+						
+						case INTEGER:
+							
+							System.out.print("Pre-Order Traversal: ");
+							binary_tree_int_type.preOrderTraversal();
+							
+							System.out.print("\nIn-Order Traversal: ");
+							binary_tree_int_type.inOrderTraversal();
+							
+							System.out.print("\nPost-Order Traversal: ");
+							binary_tree_int_type.postOrderTraversal();
+							
+							System.out.print("\nLevel-Order Traversal: ");
+							binary_tree_int_type.levelOrderTraversal();
+							
+							System.out.printf("%n");
+							break;
+					
+					}
+					
 					break;
+					
 					
 				case GET_PROPERTIES:
 					
