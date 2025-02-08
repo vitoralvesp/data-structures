@@ -49,6 +49,6 @@ public class Node<T> {
 	
 	/* METHODS */
 	
-	public String show() { return "( " + data + " )"; }
+	public String show() { return "data: " + data + ", left: " + (left == null ? "null" : left.data) + ", right: " + (right == null ? "null" : right.data); }
 
 }

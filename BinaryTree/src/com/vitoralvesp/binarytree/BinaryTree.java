@@ -1,6 +1,11 @@
 package com.vitoralvesp.binarytree;
 
-public class BinaryTree<T> {
+import java.util.Queue;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.ArrayList;
+
+public class BinaryTree<T extends Comparable<T>> {
 	
 	private Node<T> root;
 	
@@ -18,13 +23,10 @@ public class BinaryTree<T> {
 	
 	private int getHeight(Node<T> root) {
 		
-		if (isEmpty()) return -1;
+		if (root == null) return -1;
 		
-		int left_tree_height = 0;
-		int right_tree_height = 0;
-		
-		if (root.getLeft() != null) left_tree_height = getHeight(root.getLeft()) + 1;
-		if (root.getRight() != null) right_tree_height = getHeight(root.getRight()) + 1;
+		int left_tree_height = getHeight(root.getLeft());
+		int right_tree_height = getHeight(root.getRight());
 		
 		return Math.max(left_tree_height, right_tree_height) + 1;
 		
@@ -39,25 +41,43 @@ public class BinaryTree<T> {
 	
 	public boolean isFull() { return false; } 
 	
+	private boolean isLevelComplete(Node<T> node) {
+		
+		if (node == null || node.getLeft() == null || node.getRight() == null)
+			return false;
+		
+		return true;
+		
+	}
+	
 	private Node<T> insert(Node<T> root, T data) {
 		
-		if (root == null) {
-			root = new Node<>(data);
-			return root;
-		}
+		if (root == null)
+			return new Node<>(data);
 		
-		if (root.getLeft() == null) root.setLeft(insert(root.getLeft(), data));
-		else root.setRight(insert(root.getRight(), data));
+		if (root.getLeft() == null)
+			root.setLeft(new Node<>(data));
+		
+		else if (root.getRight() == null)
+			root.setRight(new Node<>(data));
+		
+		else {
+			
+			if (!isLevelComplete(root.getLeft()))
+				root.setLeft(insert(root.getLeft(), data));
+			else
+				root.setRight(insert(root.getRight(), data));
+		}
 		
 		return root;
 		
 	}
 	
-	public void insert(T data) { insert(root, data); }
+	public void insert(T data) { root = insert(root, data); }
 	
 	private void preOrderTraversal(Node<T> root) {
 		
-		if (isEmpty()) return;
+		if (root == null) return;
 		
 		System.out.print(root.getData() + " ");
 		preOrderTraversal(root.getLeft());
@@ -67,7 +87,7 @@ public class BinaryTree<T> {
 	
 	private void inOrderTraversal(Node<T> root) {
 		
-		if (isEmpty()) return;
+		if (root == null) return;
 		
 		inOrderTraversal(root.getLeft());
 		System.out.print(root.getData() + " ");
@@ -77,7 +97,7 @@ public class BinaryTree<T> {
 	
 	private void postOrderTraversal(Node<T> root) {
 		
-		if (isEmpty()) return;
+		if (root == null) return;
 		
 		postOrderTraversal(root.getLeft());
 		postOrderTraversal(root.getRight());
@@ -85,7 +105,53 @@ public class BinaryTree<T> {
 		
 	}
 	
-	private void levelOrderTraversal(Node<T> root) {}
+	private void levelOrderTraversal(Node<T> root) {
+		
+		List<List<T>> ans = new ArrayList<>();
+        
+		if (root == null) {
+            return;
+        }
+
+        Queue<Node<T>> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+
+        	int size = q.size();
+            List<T> level = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                
+            	Node<T> node = q.poll();
+                
+                level.add(node.getData());
+
+                if (node.getLeft() != null) {
+                    q.add(node.getLeft());
+                }
+                if (node.getRight() != null) {
+                    q.add(node.getRight());
+                }
+            }
+            
+            ans.add(level);
+        }
+       
+        
+        for (List<T> level : ans) {
+        	
+        	for (T data : level) {
+        		
+        		System.out.print(data + " ");
+        		
+        	}
+        	
+        	System.out.printf("%n");
+        	
+        }
+		
+	}
 	
 	public void preOrderTraversal() { preOrderTraversal(root); }
 	
@@ -94,6 +160,20 @@ public class BinaryTree<T> {
 	public void postOrderTraversal() { postOrderTraversal(root); }
 	
 	public void levelOrderTraversal() { levelOrderTraversal(root); }
+	
+	private void status(Node<T> root) {
+		
+		if (root == null) return;
+		
+		System.out.println(root.show());
+		status(root.getLeft());
+		status(root.getRight());
+		
+	}
+	
+	public void status() { status(root); }
+	
+	
 	
 	
 }

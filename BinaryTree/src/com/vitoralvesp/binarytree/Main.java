@@ -114,7 +114,7 @@ public class Main {
 							System.out.print("\nPost-Order Traversal: ");
 							binary_tree_str_type.postOrderTraversal();
 							
-							System.out.print("\nLevel-Order Traversal: ");
+							System.out.print("\nLevel-Order Traversal:\n");
 							binary_tree_str_type.levelOrderTraversal();
 							
 							System.out.printf("%n");
@@ -131,7 +131,7 @@ public class Main {
 							System.out.print("\nPost-Order Traversal: ");
 							binary_tree_int_type.postOrderTraversal();
 							
-							System.out.print("\nLevel-Order Traversal: ");
+							System.out.print("\nLevel-Order Traversal:\n");
 							binary_tree_int_type.levelOrderTraversal();
 							
 							System.out.printf("%n");
@@ -146,8 +146,10 @@ public class Main {
 					
 					System.out.println("---\nGETTING PROPERTIES");
 					
-					switch (Datatype.values()[datatype_option - 1]) {
-					
+					try {
+						
+						switch (Datatype.values()[datatype_option - 1]) {
+						
 						case STRING:
 							System.out.println("Root: " + binary_tree_str_type.getRoot());
 							System.out.println("Height: " + binary_tree_str_type.getHeight());
@@ -156,16 +158,25 @@ public class Main {
 							
 							break;
 							
-						
+							
 						case INTEGER:
 							System.out.println("Root: " + binary_tree_int_type.getRoot());
 							System.out.println("Height: " + binary_tree_int_type.getHeight());
 							System.out.println("Empty: " + (binary_tree_int_type.isEmpty() ? "Yes" : "No"));
 							System.out.println("Full: " + (binary_tree_int_type.isFull() ? "Yes" : "No"));
+							System.out.println("Status:");
+							binary_tree_int_type.status();
 							
 							break;
 							
+						}
+						
+					} catch (NullPointerException e) {
+						
+						System.out.print("Binary Tree is NULL.\n");
+						
 					}
+					
 					
 					break;			
 					
