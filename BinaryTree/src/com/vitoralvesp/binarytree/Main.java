@@ -94,7 +94,24 @@ public class Main {
 					break;
 					
 				case REMOVE:
-					System.out.println("REMOVE");
+					
+					System.out.print("---\nREMOVING AN ELEMENT\nEnter the element to be removed: ");
+					
+					switch (Datatype.values()[datatype_option - 1]) {
+					
+					case STRING:
+						String remove_str_element = scanner.nextLine();
+						binary_tree_str_type.remove(remove_str_element);
+						break;
+					
+					case INTEGER:
+						Integer remove_int_element = scanner.nextInt();
+						binary_tree_int_type.remove(remove_int_element);
+						break;					
+					
+					}
+					
+					System.out.println("[ SUCCESS ] Element removed succesfully.");		
 					break;
 					
 				case TRAVERSE:

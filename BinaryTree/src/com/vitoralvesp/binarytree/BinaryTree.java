@@ -19,7 +19,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	/* GETTERS */
 	
-	public T getRoot() { return root.getData(); }
+	public Node<T> getRoot() { return root; }
 	
 	private int getHeight(Node<T> root) {
 		
@@ -39,7 +39,9 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public boolean isEmpty() { return root == null; }
 	
-	public boolean isFull() { return false; } 
+	public boolean isFull() { return false; }
+	
+	// ----
 	
 	private boolean isLevelComplete(Node<T> node) {
 		
@@ -74,6 +76,51 @@ public class BinaryTree<T extends Comparable<T>> {
 	}
 	
 	public void insert(T data) { root = insert(root, data); }
+	
+	// ----
+	
+	private Node<T> remove(Node<T> root, T data) {
+		
+		if (root == null) return null;
+		
+		if (root.getData().equals(data)) {
+			
+			// Case 1
+			if (root.getLeft() == null && root.getRight() == null)
+				return null;
+			
+			// Case 2
+			else if (root.getLeft() == null)
+				return root.getRight();
+			else if (root.getRight() == null)
+				return root.getLeft();
+			
+			// Case 3
+			else {
+				
+				Node<T> successor = root.getLeft();
+				while (successor.getRight() != null)
+					successor = successor.getRight();
+				
+				root.setData(successor.getData());
+				root.setLeft(remove(root.getLeft(), successor.getData()));
+			
+			}
+			
+		} else {
+			
+			root.setLeft(remove(root.getLeft(), data));
+			root.setRight(remove(root.getRight(), data));
+			
+		}
+		
+		return root;
+		
+	}
+	
+	public void remove(T data) { root = remove(root, data); }
+	
+	// ----
 	
 	private void preOrderTraversal(Node<T> root) {
 		
