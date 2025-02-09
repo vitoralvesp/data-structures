@@ -44,29 +44,61 @@ public class Main {
 				
 				case CREATE:
 					
-					System.out.print("---\nCREATING BINARY TREE\nSelect one of the datatypes below to create a binary tree.\n[ 1 ] STRING\n[ 2 ] INTEGER\nEnter the datatype selected here: ");
+					System.out.println("---\nCREATING BINARY TREE");
 					
-					try {
+					while (true) {
 						
-						datatype_option = scanner.nextInt();
-						
-						switch (Datatype.values()[datatype_option - 1]) {
-						
-							case STRING:
-								binary_tree_str_type = new BinaryTree<>();
+						if (binary_tree_str_type == null && binary_tree_int_type == null) {
+							
+							System.out.print("Select one of the datatypes below to create a binary tree.\n[ 1 ] STRING\n[ 2 ] INTEGER\nEnter the datatype selected here: ");
+							
+							try {
+								
+								datatype_option = scanner.nextInt();
+								
+								switch (Datatype.values()[datatype_option - 1]) {
+								
+								case STRING:
+									binary_tree_str_type = new BinaryTree<>();
+									break;
+									
+								case INTEGER:
+									binary_tree_int_type = new BinaryTree<>();
+									break;
+									
+								}
+								
+								System.out.println("[ SUCCESS ] New binary tree created succesfully.");
+								
 								break;
 								
-							case INTEGER:
-								binary_tree_int_type = new BinaryTree<>();
-								break;
+							} catch (ArrayIndexOutOfBoundsException e) {
+								
+								System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
+								
+							}
+							
+						} else {
+							
+							char continue_operation;
+							
+							System.out.print("[ CONFIRMATION ] You are already using a binary tree. If you choose to proceed by creating a new one, the one you are currently running will be discarded. Do you want to continue [Y/N]: ");
+							
+							continue_operation = scanner.next().toUpperCase().charAt(0);
+							
+							while (continue_operation != 'N' && continue_operation != 'Y') {
+								
+								System.out.print("[ INVALID OPTION ] Select only N or Y to confirm the operation. Try again...\nDo you want to continue [Y/N]: ");
+								continue_operation = scanner.next().toUpperCase().charAt(0);
+								
+							}
+							
+							if (continue_operation == 'N') break;
+							
+							binary_tree_int_type = null;
+							binary_tree_str_type = null;
 								
 						}
-						
-						System.out.println("[ SUCCESS ] New binary tree created succesfully.");
-						
-					} catch (ArrayIndexOutOfBoundsException e) {
-						
-						System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
 						
 					}
 					
