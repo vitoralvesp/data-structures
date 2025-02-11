@@ -1,4 +1,5 @@
 package com.vitoralvesp.binarytree;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -33,12 +34,28 @@ public class Main {
 		int datatype_option = -1;
 		
 		while (menu_option != 6) {
-
-			System.out.print("---\nBINARY TREE SIMULATOR\nSelect one of the options below to interact with the binary tree.\n[ 1 ] CREATE\n[ 2 ] INSERT\n[ 3 ] REMOVE\n[ 4 ] TRAVERSE\n[ 5 ] GET PROPERTIES\n[ 6 ] EXIT\nChoose on of the options: ");
+			
+			while (true) {
+				
+				try { 
+					
+					System.out.print("---\nBINARY TREE SIMULATOR\nSelect one of the options below to interact with the binary tree.\n[ 1 ] CREATE\n[ 2 ] INSERT\n[ 3 ] REMOVE\n[ 4 ] TRAVERSE\n[ 5 ] GET PROPERTIES\n[ 6 ] EXIT\nChoose on of the options: ");
+					
+					menu_option = scanner.nextInt();
+					
+					break;
+					
+				} catch (InputMismatchException e) {
+					
+					System.out.println("[ INVALID INPUT ] Enter only integers to select one of the options. Try again...");
+					
+					scanner.nextLine();
+					
+				}
+				
+			}
 			
 			try {
-				
-				menu_option = scanner.nextInt();
 				
 				switch (Menu.values()[menu_option - 1]) {
 				
@@ -50,11 +67,27 @@ public class Main {
 						
 						if (binary_tree_str_type == null && binary_tree_int_type == null) {
 							
-							System.out.print("Select one of the datatypes below to create a binary tree.\n[ 1 ] STRING\n[ 2 ] INTEGER\nEnter the datatype selected here: ");
+							while (true) {
+								
+								try {
+									
+									System.out.print("Select one of the datatypes below to create a binary tree.\n[ 1 ] STRING\n[ 2 ] INTEGER\nEnter the datatype selected here: ");
+									
+									datatype_option = scanner.nextInt();
+									
+									break;
+									
+								} catch (InputMismatchException e) {
+									
+									System.out.println("[ INVALID INPUT ] Enter only integers to select one of the options. Try again...");
+									
+									scanner.nextLine();
+									
+								}
+								
+							}
 							
 							try {
-								
-								datatype_option = scanner.nextInt();
 								
 								switch (Datatype.values()[datatype_option - 1]) {
 								
@@ -75,6 +108,10 @@ public class Main {
 							} catch (ArrayIndexOutOfBoundsException e) {
 								
 								System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
+								
+							} catch (InputMismatchException e) {
+								
+								System.out.println("[ INVALID INPUT ] Enter only integers to select one of the options. Try again...");
 								
 							}
 							
@@ -112,7 +149,7 @@ public class Main {
 					switch (Datatype.values()[datatype_option - 1]) {
 					
 						case STRING:
-							String new_str_element = scanner.nextLine();
+							String new_str_element = scanner.next();
 							binary_tree_str_type.insert(new_str_element);
 							break;
 						
@@ -132,7 +169,7 @@ public class Main {
 					switch (Datatype.values()[datatype_option - 1]) {
 					
 					case STRING:
-						String remove_str_element = scanner.nextLine();
+						String remove_str_element = scanner.next();
 						binary_tree_str_type.remove(remove_str_element);
 						break;
 					
@@ -200,7 +237,7 @@ public class Main {
 						switch (Datatype.values()[datatype_option - 1]) {
 						
 						case STRING:
-							System.out.println("Root: " + binary_tree_str_type.getRoot());
+							System.out.println("Root: " + binary_tree_str_type.getRoot().getData());
 							System.out.println("Height: " + binary_tree_str_type.getHeight());
 							System.out.println("Empty: " + (binary_tree_str_type.isEmpty() ? "Yes" : "No"));
 							System.out.println("Full: " + (binary_tree_str_type.isFull() ? "Yes" : "No"));
@@ -209,7 +246,7 @@ public class Main {
 							
 							
 						case INTEGER:
-							System.out.println("Root: " + binary_tree_int_type.getRoot());
+							System.out.println("Root: " + binary_tree_int_type.getRoot().getData());
 							System.out.println("Height: " + binary_tree_int_type.getHeight());
 							System.out.println("Empty: " + (binary_tree_int_type.isEmpty() ? "Yes" : "No"));
 							System.out.println("Full: " + (binary_tree_int_type.isFull() ? "Yes" : "No"));
