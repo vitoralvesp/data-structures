@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-public class BinaryTree<T extends Comparable<T>> {
+public class BinaryTree<T> {
 	
 	private Node<T> root;
 	
