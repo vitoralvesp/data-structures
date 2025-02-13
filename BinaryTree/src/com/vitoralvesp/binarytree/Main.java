@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 	
+	// Menu Structure
 	private enum Menu {
 		
 		CREATE(1), INSERT(2), REMOVE(3), TRAVERSE(4), GET_PROPERTIES(5), EXIT(6);
