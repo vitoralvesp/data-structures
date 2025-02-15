@@ -14,7 +14,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	public BinaryTree() {}
 	
-	BinaryTree(T data) { this.root = new Node<>(data); }
+	public BinaryTree(T data) { this.root = new Node<>(data); }
 	
 	
 	/* GETTERS */

@@ -9,7 +9,7 @@ public class Node<T> {
 	
 	/* CONSTRUCTORS */
 	
-	Node() {}
+	public Node() {}
 	
 	public Node(T data) {
 		this.data = data;
