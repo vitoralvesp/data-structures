@@ -1,12 +1,12 @@
-package com.vitoralvesp.dinamicstack;
+package main.com.vitoralvesp.model.stack;
 
-public class DinamicStack<T> {
+public class DynamicStack<T> {
 	
 		private T[] stack;
 		
 		/* CONSTRUCTORS */
 		@SuppressWarnings("unchecked")
-		DinamicStack() {
+		public DynamicStack() {
 			this.stack = (T[]) new Object[10];
 		}
 		

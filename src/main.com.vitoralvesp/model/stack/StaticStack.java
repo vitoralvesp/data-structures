@@ -1,4 +1,4 @@
-package com.vitoralvesp.staticstack;
+package main.com.vitoralvesp.model.stack;
 
 public class StaticStack<T> {
 	
@@ -9,7 +9,7 @@ public class StaticStack<T> {
 	StaticStack() {}
 	
 	@SuppressWarnings("unchecked")
-	StaticStack(int size) {
+	public StaticStack(int size) {
 		this.size = size;
 		this.stack = (T[]) new Object[size];
 	}

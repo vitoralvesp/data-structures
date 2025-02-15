@@ -1,6 +1,6 @@
-package com.vitoralvesp.staticqueue;
+package main.com.vitoralvesp.controllers;
 
-public class Main {
+public class ControllerStaticQueue {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

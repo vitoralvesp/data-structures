@@ -1,9 +1,11 @@
-package com.vitoralvesp.binarytree;
+package main.com.vitoralvesp.controllers;
+
+import main.com.vitoralvesp.model.binarytree.BinaryTree;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class ControllerBinaryTree {
 
     final static int QUIT = 6;
     final static char NOT = 'N';
@@ -39,7 +41,7 @@ public class Main {
 
                     case REMOVE:
                         System.out.print("---\nREMOVING AN ELEMENT\nEnter the element to be removed: ");
-						executeRemoveElement(binary_tree_int_type, binary_tree_str_type, scanner, datatype_option);
+                        executeRemoveElement(binary_tree_int_type, binary_tree_str_type, scanner, datatype_option);
                         break;
 
                     case TRAVERSE:
@@ -143,7 +145,6 @@ public class Main {
     }
 
     /**
-     *
      * @param scanner
      * @return
      */
@@ -165,7 +166,6 @@ public class Main {
     }
 
     /**
-     *
      * @param binary_tree_int_type
      * @param binary_tree_str_type
      * @param datatype_option
@@ -203,7 +203,7 @@ public class Main {
                     break;
             }
             System.out.println("[ SUCCESS ] New binary tree created succesfully.");
-			return true;
+            return true;
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("[ INVALID OPTION ] Select only positive integers from 1 to 6 to access one of the options available. Try again...");
         } catch (InputMismatchException e) {
@@ -216,7 +216,6 @@ public class Main {
     }
 
     /**
-     *
      * @param binary_tree_int_type
      * @param binary_tree_str_type
      * @param scanner
@@ -232,7 +231,7 @@ public class Main {
             continue_operation = scanner.next().toUpperCase().charAt(0);
         }
 
-    	if (continue_operation == NOT) return false;
+        if (continue_operation == NOT) return false;
 
         binary_tree_int_type = null;
         binary_tree_str_type = null;
@@ -240,7 +239,6 @@ public class Main {
     }
 
     /**
-     *
      * @param binary_tree_int_type
      * @param binary_tree_str_type
      * @param scanner
@@ -256,12 +254,11 @@ public class Main {
                 isValidOption = getContinueOperation(binary_tree_int_type, binary_tree_str_type, scanner);
             }
 
-            if(!isValidOption) break;
+            if (!isValidOption) break;
         }
     }
 
     /**
-     *
      * @param binary_tree_int_type
      * @param binary_tree_str_type
      * @param scanner
@@ -287,7 +284,6 @@ public class Main {
     }
 
     /**
-     *
      * @param binary_tree_int_type
      * @param binary_tree_str_type
      * @param scanner

@@ -1,4 +1,4 @@
-package com.vitoralvesp.binarytree;
+package main.com.vitoralvesp.model.binarytree;
 
 import java.util.Queue;
 import java.util.List;
@@ -12,7 +12,7 @@ public class BinaryTree<T extends Comparable<T>> {
 	
 	/* CONSTRUCTORS */
 	
-	BinaryTree() {}
+	public BinaryTree() {}
 	
 	BinaryTree(T data) { this.root = new Node<>(data); }
 	

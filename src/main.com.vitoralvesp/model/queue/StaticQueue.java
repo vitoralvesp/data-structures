@@ -1,4 +1,4 @@
-package com.vitoralvesp.staticqueue;
+package main.com.vitoralvesp.model.queue;
 
 public class StaticQueue<T> {
 
@@ -10,9 +10,9 @@ public class StaticQueue<T> {
 	
 	/* CONSTRUCTORS */
 	
-	StaticQueue() {}
+	public StaticQueue() {}
 	
-	StaticQueue(int size) {
+	public StaticQueue(int size) {
 		this.first = 0;
 		this.last = 0;
 		this.count = 0;
